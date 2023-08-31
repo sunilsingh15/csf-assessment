@@ -27,4 +27,8 @@ export class NewsService {
   getTopTags(minutes: number): Observable<any> {
     return this.http.get(`/api/posts/${minutes}`);
   }
+
+  getPosts(tag: string, duration: number): Observable<any> {
+    return this.http.get(`/api/posts/${tag}/${duration}`);
+  }
 }

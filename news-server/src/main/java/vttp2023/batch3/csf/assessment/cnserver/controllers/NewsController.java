@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import jakarta.json.Json;
 import jakarta.json.JsonObject;
+import vttp2023.batch3.csf.assessment.cnserver.models.News;
 import vttp2023.batch3.csf.assessment.cnserver.models.TagCount;
 import vttp2023.batch3.csf.assessment.cnserver.services.NewsService;
 
@@ -41,10 +42,14 @@ public class NewsController {
 
 	// TODO: Task 2
 	@GetMapping(path = "/posts/{minutes}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<TagCount>> getPostsByMinutes(@PathVariable Integer minutes) {
+	public ResponseEntity<List<TagCount>> getTagsByMinutes(@PathVariable Integer minutes) {
 		return ResponseEntity.ok(service.getTags(minutes));
 	}
 
 	// TODO: Task 3
+	@GetMapping(path = "/posts/{tag}/{duration}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<News>> getPostsByTagAndDuration(@PathVariable String tag, @PathVariable Integer duration) {
+		return ResponseEntity.ok(service.getNewsByTag(tag, duration));
+	}
 
 }

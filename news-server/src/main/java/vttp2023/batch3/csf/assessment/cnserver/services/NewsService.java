@@ -1,9 +1,7 @@
 package vttp2023.batch3.csf.assessment.cnserver.services;
 
 import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.bson.Document;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,8 +67,8 @@ public class NewsService {
 	// Do not change the method name and the return type
 	// You may add any number of parameters
 	// Returns a list of news
-	public List<News> getNewsByTag(/* Any number of parameters */) {
-		return new LinkedList<>();
+	public List<News> getNewsByTag(String tag, Integer duration) {
+		return newsRepo.getDocumentsByTagAndDuration(tag, duration);
 	}
 
 }

@@ -1,1 +1,17 @@
-<p>newslist works!</p>
+<h1>List of News with #{{ hashtag }}</h1>
+
+<button routerLink="/">Back</button>
+<button routerLink="/post">Post News</button>
+
+<div *ngIf="posts.length > 0; else noPosts"></div>
+<div *ngFor="let post of posts">
+  <p>{{post.title}}</p>
+  <p>{{post.postDate}}</p>
+  <p>{{post.description}}</p>
+  <p><img src="{{post.image}}" style="width: 200px;"></p>
+  <p><code>{{post.tags}}</code></p>
+</div>
+
+<ng-template #noPosts>
+  <p>Loading...</p>
+</ng-template>
