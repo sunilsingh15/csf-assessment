@@ -23,7 +23,7 @@
 
 <div *ngIf="topTags.length > 0; else noTags">
 <div *ngFor="let tag of topTags">
-  <h3>{{tag.tag}} <span>({{ tag.count }})</span></h3>
+  <a [routerLink]="['/posts', tag.tag, timeValue]"><h3>{{tag.tag}} <span>({{ tag.count }})</span></h3></a>
 </div>
 </div>
 
