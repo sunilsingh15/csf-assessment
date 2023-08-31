@@ -1,0 +1,37 @@
+<form [formGroup]="postForm" (ngSubmit)="processForm()">
+  <table>
+    <tr>
+      <td></td>
+      <td><h1>Share a News</h1></td>
+    </tr>
+    <tr>
+      <td>Title:</td>
+      <td><input type="text" formControlName="title" size="35" /></td>
+    </tr>
+    <tr>
+      <td>Photo:</td>
+      <td><input type="file" formControlName="photo" #photo /></td>
+    </tr>
+    <tr>
+      <td>Description:</td>
+      <td><textarea cols="30" rows="10" formControlName="description"></textarea></td>
+    </tr>
+    <tr>
+      <td>Tags:</td>
+      <td><input type="text" formControlName="tags" size="35"/></td>
+      <td><button type="button" (click)="addTags(postForm.value['tags'])">+</button></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td><span *ngFor="let tag of tags"><code (click)="removeTag(tag)">{{ tag }}</code>&nbsp;&nbsp;</span></td>
+    </tr>
+    <br />
+    <tr>
+      <td></td>
+      <td>
+        <a routerLink="['/']"><button>Back</button></a> &nbsp;&nbsp;
+        <button type="submit" [disabled]="postForm.invalid">Post News</button>
+      </td>
+    </tr>
+  </table>
+</form>
