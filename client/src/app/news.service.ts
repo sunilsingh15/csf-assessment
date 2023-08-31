@@ -23,4 +23,8 @@ export class NewsService {
 
     return this.http.post('/api/post', formData);
   }
+
+  getTopTags(minutes: number): Observable<any> {
+    return this.http.get(`/api/posts/${minutes}`);
+  }
 }

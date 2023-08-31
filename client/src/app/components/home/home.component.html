@@ -1,1 +1,32 @@
-<p>home works!</p>
+<table>
+  <tr>
+    <td><strong>Time</strong></td>
+    <td>
+      <select (change)="onDropdownChange(selectedVal.value)" #selectedVal>
+        <option value="5">5 mins</option>
+        <option value="15">15 mins</option>
+        <option value="30">30 mins</option>
+        <option value="45">45 mins</option>
+        <option value="60">60 mins</option>
+      </select>
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>
+      <a routerLink="/post"><button>Post News</button></a>
+    </td>
+  </tr>
+</table>
+
+<h2>Top Tags</h2>
+
+<div *ngIf="topTags.length > 0; else noTags">
+<div *ngFor="let tag of topTags">
+  <h3>{{tag.tag}} <span>({{ tag.count }})</span></h3>
+</div>
+</div>
+
+<ng-template #noTags>
+<p>No new hashtags found within the last {{ timeValue }} minutes.</p>
+</ng-template>

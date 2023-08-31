@@ -3,7 +3,9 @@ package vttp2023.batch3.csf.assessment.cnserver.services;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 
+import org.bson.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -20,7 +22,7 @@ public class NewsService {
 	private ImageRepository imageRepo;
 
 	@Autowired
-	private NewsRepository newsRepository;
+	private NewsRepository newsRepo;
 
 	// TODO: Task 1
 	// Do not change the method name and the return type
@@ -46,7 +48,7 @@ public class NewsService {
 		newPost.setPostDate(System.currentTimeMillis());
 		newPost.setTags(Arrays.asList(tagsArray));
 
-		String postId = newsRepository.savePost(newPost);
+		String postId = newsRepo.savePost(newPost);
 
 		return postId;
 	}
@@ -55,8 +57,12 @@ public class NewsService {
 	// Do not change the method name and the return type
 	// You may add any number of parameters
 	// Returns a list of tags and their associated count
-	public List<TagCount> getTags(/* Any number of parameters */) {
-		return new LinkedList<>();
+	public List<TagCount> getTags(Integer minutes) {
+
+		List<Document> tagList = newsRepo.getTags(minutes);
+
+		return tagList.stream()
+				.map(t -> (new TagCount(t.getString("tag"), t.getInteger("count")))).toList();
 	}
 
 	// TODO: Task 3

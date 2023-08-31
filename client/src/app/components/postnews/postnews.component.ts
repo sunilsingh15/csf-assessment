@@ -45,8 +45,6 @@ export class PostnewsComponent implements OnInit {
   }
 
   processForm() {
-    console.log(this.postForm.value);
-
     this.sub$ = this.service.postForm(this.postForm, this.photo).subscribe({
       next: (result) => {alert('Your news has been posted successfully, with id: ' + result.newsId);
                          this.router.navigate(['/'])},
