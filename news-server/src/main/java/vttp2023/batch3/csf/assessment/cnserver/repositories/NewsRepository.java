@@ -16,6 +16,18 @@ public class NewsRepository {
 	// TODO: Task 1
 	// Write the native Mongo query in the comment above the method
 
+	// MONGO QUERY:
+	// use assessment
+	// db.news.insertOne(
+		// {
+		//  postDate: << date >>,
+		// 	title: << title >>,
+		// 	description: << description >>,
+		// 	image: << image URL >>,
+		// 	tags: << tags, if applicable >>,
+		// }
+	// )
+
 	public String savePost(News post) {
 
 		Document postToSave = new Document();
